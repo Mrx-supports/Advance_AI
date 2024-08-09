@@ -1,2 +1,2 @@
-web: python3 cooltech.py
-worker: python3 cooltech.py
+web: python3 CoolTechBot.py
+worker: python3 CoolTechBot.py
