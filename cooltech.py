@@ -2,6 +2,8 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, ContextTypes
 from datetime import datetime
 import os
+import asyncio
+from aiohttp import web
 
 # Fetch environment variables
 BOT_TOKEN = os.getenv('BOT_TOKEN')
@@ -66,11 +68,26 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         reply_markup=reply_markup
     )
 
-# Main function to set up the bot
-def main():
-    application = Application.builder().token(BOT_TOKEN).build()
-    application.add_handler(CommandHandler("start", start))
-    application.run_polling()
+# Function to run both the bot and aiohttp server
+async def main():
+    # Start the Telegram bot
+    bot_application = Application.builder().token(BOT_TOKEN).build()
+    bot_application.add_handler(CommandHandler("start", start))
+    asyncio.create_task(bot_application.run_polling())
+
+    # Start the aiohttp server
+    aiohttp_app = web.Application()
+    aiohttp_app.add_routes([
+        web.get("/", root_route_handler)
+    ])
+    runner = web.AppRunner(aiohttp_app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", 8080)  # Adjust the port if necessary
+    await site.start()
+
+    # Keep the process running
+    while True:
+        await asyncio.sleep(3600)  # Sleep for 1 hour
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
