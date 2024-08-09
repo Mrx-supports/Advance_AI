@@ -6,7 +6,7 @@ import asyncio
 from aiohttp import web
 
 # Fetch environment variables
-BOT_TOKEN = os.getenv('7190103660:AAH3nCBXpC6rFSj_gfGKuQt1SYZ7VIYwLIQ')
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 # Function to get the appropriate greeting based on the current time
 def get_greeting():
@@ -84,4 +84,4 @@ async def main():
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
- 
+    loop.run_until_complete(main())
