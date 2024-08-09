@@ -1,7 +1,4 @@
 HorridAPI==1.0.24
-
 git+https://github.com/python-telegram-bot/ptbcontrib.git
-
-
 python-telegram-bot==20.4
 
