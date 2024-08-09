@@ -1,1 +1,2 @@
 HorridAPI==1.0.24
+python-telegram-bot==20.4
