@@ -33,10 +33,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     start_message = (
         f"𝙷𝚎𝚕𝚕𝚘 {title} {user_mention}! {greeting}!\n\n"
         f"🔍 𝚈𝚘𝚞𝚛 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚍𝚒𝚝𝚎 𝙳𝚎𝚝𝚒𝚕𝚜:\n"
-        f"• 𝙽𝚊𝚖𝚎: {user_name}\n"
-        f"• 𝚄𝚜𝚎𝚛𝚗𝚎: @{username}\n"
-        f"• 𝚃𝚎𝚕𝚎𝚐𝚛𝚎𝚝𝚒𝚍: `{user_id}`\n\n"
-        f"𝙼𝚢 𝚗𝚊𝚖𝚎 𝚒𝚜 {bot_name}.\n"
+        f"• 𝙽𝚊𝚍𝚒𝚝𝚎: {user_name}\n"
+        f"• 𝚄𝚜𝚎𝚛𝚟𝚎: @{username}\n"
+        f"• 𝚃𝚎𝚕𝚎𝚐𝚛𝚨𝚽: `{user_id}`\n\n"
+        f"𝙼𝚢 𝚋𝚘𝚝 𝚗𝚊𝚖𝚎 𝚒𝚜 {bot_name}.\n"
         "𝙸 𝙲𝙰𝙽 𝙿𝚁𝙾𝚅𝙸𝙳𝙴 ᴀɪ ᴅᴇᴛᴀɪʟꜱ, 𝙹𝚄𝚂𝚃 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚸𝙾𝚄𝚽 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙴𝙽𝙹𝙾𝣸 😍\n"
         "How can I help you today?"
     )
@@ -63,6 +63,11 @@ def main():
 
     application.add_handler(CommandHandler("start", start))
 
-    # Ensure that your application is set up to use the port if necessary
-    port = os.getenv('PORT', 8080)  # Default to 8080 if PORT not set
-    application.run_polling()  # Use polling for a bot
+    # Use PORT environment variable or default to 8080
+    port = os.getenv('PORT', 8080)
+
+    # Run the bot with polling
+    application.run_polling(allowed_updates=["message", "edited_message", "callback_query"])
+
+if __name__ == '__main__':
+    main()
