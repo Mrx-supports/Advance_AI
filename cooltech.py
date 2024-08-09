@@ -35,7 +35,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         f"𝙷𝚎𝚕𝚕𝚘 {title} {user_mention}! {greeting}!\n\n"
         f"🔍 𝚈𝚘𝚞𝚛 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚍𝚎𝚊𝚛𝚝𝚎𝚜:\n"
         f"• 𝙽𝚊𝚖𝚎: {user_name}\n"
-        f"• 𝚄𝚜𝚎𝚛𝚗𝚎: @{username}\n"
+        f"• 𝚄𝚜𝚎𝚛𝚗𝚊: @{username}\n"
         f"• 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚍𝚎𝚒𝚃𝙾𝙳: `{user_id}`\n\n"
         f"𝙼𝚢 𝚗𝚎𝚖𝚎 𝚒𝚜 {bot_name}.\n"
         "𝙸 𝙲𝙰𝙽 𝙿𝚁𝙾𝚅𝙸𝙳𝙴 ᴀɪ ᴅᴇᴛᴀɪʟꜱ, 𝙹𝚄𝚂𝚃 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙴𝙽𝙹𝙾𝚈 😍\n"
@@ -83,5 +83,4 @@ async def main():
         await asyncio.sleep(3600)  # Sleep for 1 hour
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    asyncio.run(main())
