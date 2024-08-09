@@ -73,8 +73,7 @@ async def main():
     # Start the Telegram bot
     bot_application = Application.builder().token(BOT_TOKEN).build()
     bot_application.add_handler(CommandHandler("start", start))
-    asyncio.create_task(bot_application.run_polling())
-
+    
     # Start the aiohttp server
     aiohttp_app = web.Application()
     aiohttp_app.add_routes([
@@ -85,9 +84,13 @@ async def main():
     site = web.TCPSite(runner, "0.0.0.0", 8080)  # Adjust the port if necessary
     await site.start()
 
+    # Run the bot polling in the current event loop
+    await bot_application.initialize()
+    asyncio.create_task(bot_application.run_polling())
+
     # Keep the process running
     while True:
         await asyncio.sleep(3600)  # Sleep for 1 hour
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    asyncio.get_event_loop().run_until_complete(main())
