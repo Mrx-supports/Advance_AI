@@ -1,8 +1,2 @@
-HorridAPI==1.0.24
 pyrogram==2.0.106
-
-
-git+https://github.com/python-telegram-bot/ptbcontrib.git
-
-python-telegram-bot==20.4
 aiohttp
