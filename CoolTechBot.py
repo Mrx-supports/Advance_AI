@@ -2,18 +2,16 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from datetime import datetime
 import os
-from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+# Get bot token from environment variable
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-# Retrieve the bot token from environment variables
-BOT_TOKEN = os.getenv('BOT_TOKEN')
+# Initialize the Pyrogram Client
+app = Client("my_bot", bot_token=BOT_TOKEN)
 
 # Function to get the appropriate greeting based on the current time
 def get_greeting():
     current_hour = datetime.now().hour
-
     if 5 <= current_hour < 12:
         return "Good Morning"
     elif 12 <= current_hour < 17:
@@ -32,22 +30,22 @@ async def start(client, message):
     user_id = user.id
     user_mention = f"<a href='tg://user?id={user_id}'>{user_name}</a>"  # For HTML formatted mention
     username = user.username if user.username else "NoUsername"
-
+    
     # Get bot's name
     bot_name = (await client.get_me()).first_name
-
+    
     # Determine Mr. or Mrs. based on the first letter of the username
     title = "Mr." if user_name[0].lower() < 'n' else "Mrs."
 
     # Get the appropriate greeting
     greeting = get_greeting()
-
+    
     # Monospace formatted start message with the user's name, username, and ID
     start_message = (
         f"𝙷𝚎𝚕𝚕𝚘 {title} {user_mention}! {greeting}!\n\n"
         f"🔍 𝚈𝚘𝚞𝚛 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝙳𝚎𝚝𝚊𝚒𝚕𝚜:\n"
-        f"• 𝙽𝚎𝚎: {user_name}\n"
-        f"• 𝚄𝚜𝚎𝚛𝚗𝚎: @{username}\n"
+        f"• 𝙽𝚊𝚖𝚎: {user_name}\n"
+        f"• 𝚄𝚜𝚎𝚛𝚗𝚊𝚍𝚎: @{username}\n"
         f"• 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝙸𝙳: {user_id}\n\n"
         f"𝙼𝚢 𝚗𝚊𝚖𝚎 𝚒𝚜 {bot_name}.\n"
         "𝙸 𝙲𝙰𝙽 𝙿𝚁𝙾𝚅𝙸𝙳𝙴 ᴀɪ ᴅᴇᴛᴀɪʟꜱ, 𝙹𝚄𝚂𝚃 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙴𝙽𝙹𝙾𝚈 😍\n"
@@ -61,9 +59,9 @@ async def start(client, message):
             InlineKeyboardButton("ꜱᴜᴩᴩᴏʀᴛ ɢʀᴏᴜᴩ 2.0", url='https://t.me/XBOTSUPPORTS'),
         ]
     ]
-
+    
     reply_markup = InlineKeyboardMarkup(keyboard)
-
+    
     # Send the start message with buttons and photo
     await client.send_photo(
         chat_id=message.chat.id,
@@ -73,8 +71,6 @@ async def start(client, message):
         reply_markup=reply_markup
     )
 
-# Initialize the bot with the BOT_TOKEN from environment variables
-app = Client("my_bot", bot_token=BOT_TOKEN)
-
-# Run the bot
-app.run()
+# Start the bot
+if __name__ == "__main__":
+    app.run()
