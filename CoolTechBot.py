@@ -1,7 +1,14 @@
-import os
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the bot token from environment variables
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 # Function to get the appropriate greeting based on the current time
 def get_greeting():
@@ -17,7 +24,7 @@ def get_greeting():
         return "Good Night"
 
 # Define the /start command handler
-@Client.on_message(filters.command("start"))
+@app.on_message(filters.command("start"))
 async def start(client, message):
     # Fetch user details
     user = message.from_user
@@ -38,8 +45,8 @@ async def start(client, message):
     # Monospace formatted start message with the user's name, username, and ID
     start_message = (
         f"𝙷𝚎𝚕𝚕𝚘 {title} {user_mention}! {greeting}!\n\n"
-        f"🔍 𝚈𝚘𝚞𝚛 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚎 𝙳𝚎𝚝𝚊𝚒𝚕𝚜:\n"
-        f"• 𝙽𝚊𝚖𝚎: {user_name}\n"
+        f"🔍 𝚈𝚘𝚞𝚛 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝙳𝚎𝚝𝚊𝚒𝚕𝚜:\n"
+        f"• 𝙽𝚎𝚎: {user_name}\n"
         f"• 𝚄𝚜𝚎𝚛𝚗𝚎: @{username}\n"
         f"• 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝙸𝙳: {user_id}\n\n"
         f"𝙼𝚢 𝚗𝚊𝚖𝚎 𝚒𝚜 {bot_name}.\n"
@@ -66,8 +73,8 @@ async def start(client, message):
         reply_markup=reply_markup
     )
 
-# Read the bot token from environment variables
-BOT_TOKEN = os.getenv('BOT_TOKEN')
-
 # Initialize the bot with the BOT_TOKEN from environment variables
 app = Client("my_bot", bot_token=BOT_TOKEN)
+
+# Run the bot
+app.run()
