@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from datetime import datetime
-from info import BOT_TOKEN  # Import BOT_TOKEN from info.py
+from info import BOT_TOKEN  # Ensure you have this module with the token
 
 # Function to get the appropriate greeting based on the current time
 def get_greeting():
@@ -42,7 +42,7 @@ async def start(client, message):
         f"• 𝙽𝚊𝚖𝚎: {user_name}\n"
         f"• 𝚄𝚜𝚎𝚛𝚗𝚊𝚍𝚎: @{username}\n"
         f"• 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝙸𝙳: {user_id}\n\n"
-        f"𝙼𝚢 𝚗𝚎𝚖𝚎 𝚒𝚜 {bot_name}.\n"
+        f"𝙼𝚢 𝚗𝚊𝚖𝚎 𝚒𝚜 {bot_name}.\n"
         "𝙸 𝙲𝙰𝙽 𝙿𝚁𝙾𝚅𝙸𝙳𝙴 ᴀɪ ᴅᴇᴛᴀɪʟꜱ, 𝙹𝚄𝚂𝚃 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙴𝙽𝙹𝙾𝚈 😍\n"
         "How can I help you today?"
     )
@@ -65,3 +65,9 @@ async def start(client, message):
         parse_mode='html',
         reply_markup=reply_markup
     )
+
+# Initialize the bot with the BOT_TOKEN from info.py
+app = Client("my_bot", bot_token=BOT_TOKEN)
+
+# Run the bot
+app.run()
