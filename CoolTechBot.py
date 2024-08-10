@@ -3,11 +3,18 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from datetime import datetime
 import os
 
-# Get bot token from environment variable
+# Get bot token, API ID, and API hash from environment variables
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+API_ID = os.getenv("API_ID")
+API_HASH = os.getenv("API_HASH")
 
-# Initialize the Pyrogram Client
-app = Client("my_bot", bot_token=BOT_TOKEN)
+# Initialize the Pyrogram Client with API ID, API Hash, and Bot Token
+app = Client(
+    "my_bot",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN
+)
 
 # Function to get the appropriate greeting based on the current time
 def get_greeting():
@@ -45,7 +52,7 @@ async def start(client, message):
         f"𝙷𝚎𝚕𝚕𝚘 {title} {user_mention}! {greeting}!\n\n"
         f"🔍 𝚈𝚘𝚞𝚛 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝙳𝚎𝚝𝚊𝚒𝚕𝚜:\n"
         f"• 𝙽𝚊𝚖𝚎: {user_name}\n"
-        f"• 𝚄𝚜𝚎𝚛𝚗𝚊𝚍𝚎: @{username}\n"
+        f"• 𝚄𝚜𝚎𝚛𝚗𝚊𝚖𝚎: @{username}\n"
         f"• 𝚃𝚎𝚕𝚎𝚐𝚛𝚊𝚖 𝙸𝙳: {user_id}\n\n"
         f"𝙼𝚢 𝚗𝚊𝚖𝚎 𝚒𝚜 {bot_name}.\n"
         "𝙸 𝙲𝙰𝙽 𝙿𝚁𝙾𝚅𝙸𝙳𝙴 ᴀɪ ᴅᴇᴛᴀɪʟꜱ, 𝙹𝚄𝚂𝚃 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙴𝙽𝙹𝙾𝚈 😍\n"
