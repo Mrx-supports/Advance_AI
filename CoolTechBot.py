@@ -71,6 +71,3 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 # Initialize the bot with the BOT_TOKEN from environment variables
 app = Client("my_bot", bot_token=BOT_TOKEN)
-
-# Run the bot
-app.run()
