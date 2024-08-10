@@ -65,3 +65,4 @@ async def start(client, message):
         parse_mode='html',
         reply_markup=reply_markup
     )
+    bot.run()
