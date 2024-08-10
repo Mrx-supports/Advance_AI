@@ -65,9 +65,3 @@ async def start(client, message):
         parse_mode='html',
         reply_markup=reply_markup
     )
-
-# Initialize the bot with the BOT_TOKEN from info.py
-app = Client("my_bot", bot_token=BOT_TOKEN)
-
-# Run the bot
-app.run()
